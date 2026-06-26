@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Java Fullstack Interview Question Bank | NavTeja</title>
+<meta name="description" content="A comprehensive Java Fullstack Interview Question Bank with 400+ questions and detailed answers covering Core Java, SQL, Hibernate, Spring, DSA, HTML/CSS, JavaScript and more."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg-0:#0d0f17;--bg-1:#13161f;--bg-2:#1a1e2c;--bg-3:#21263a;
+  --glass-bg:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);
+  --text-primary:#e8eaf6;--text-secondary:#9fa8bc;--text-muted:#5c6480;
+  --accent-blue:#4f8ef7;--accent-purple:#a78bfa;--accent-teal:#2dd4bf;
+  --accent-coral:#fb923c;--accent-amber:#fbbf24;--accent-green:#34d399;
+  --accent-pink:#f472b6;--accent-gray:#94a3b8;
+  --radius:10px;--radius-lg:16px;--shadow:0 8px 32px rgba(0,0,0,0.4);
+  --transition:all .25s cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg-0);color:var(--text-primary);min-height:100vh;line-height:1.6;}
+body::before{content:'';position:fixed;top:0;left:0;right:0;height:100vh;background:radial-gradient(ellipse 80% 50% at 10% 10%,rgba(79,142,247,0.08) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 90% 80%,rgba(167,139,250,0.06) 0%,transparent 60%);pointer-events:none;z-index:0;}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(13,15,23,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--glass-border);padding:0 2rem;}
+.site-header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#4f8ef7,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;box-shadow:0 0 20px rgba(79,142,247,0.4);}
+.logo-text{font-size:15px;font-weight:600;color:var(--text-primary);}
+.logo-text span{color:var(--accent-blue);}
+.header-stats{display:flex;gap:.75rem;align-items:center;}
+.stat-pill{font-size:11px;font-weight:500;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:20px;padding:4px 12px;color:var(--text-secondary);}
+.layout{max-width:1200px;margin:0 auto;padding:2rem;display:grid;grid-template-columns:260px 1fr;gap:2rem;position:relative;z-index:1;}
+@media(max-width:860px){.layout{grid-template-columns:1fr;padding:1rem;}.sidebar{display:none;}.sidebar.open{display:block;position:fixed;top:60px;left:0;right:0;bottom:0;z-index:99;overflow-y:auto;background:var(--bg-1);padding:1rem;}}
+.sidebar{position:sticky;top:80px;height:calc(100vh - 100px);overflow-y:auto;padding-right:4px;}
+.sidebar::-webkit-scrollbar{width:3px;}.sidebar::-webkit-scrollbar-thumb{background:var(--bg-3);border-radius:2px;}
+.search-wrap{margin-bottom:1rem;}
+.search-input{width:100%;padding:10px 14px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius);color:var(--text-primary);font-family:'Inter',sans-serif;font-size:13.5px;transition:var(--transition);outline:none;}
+.search-input::placeholder{color:var(--text-muted);}
+.search-input:focus{border-color:var(--accent-blue);background:rgba(79,142,247,0.06);box-shadow:0 0 0 3px rgba(79,142,247,0.1);}
+.module-nav{display:flex;flex-direction:column;gap:4px;}
+.nav-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:var(--radius);cursor:pointer;border:1px solid transparent;transition:var(--transition);font-size:13.5px;font-weight:500;color:var(--text-secondary);background:transparent;width:100%;text-align:left;}
+.nav-item:hover{background:var(--glass-bg);color:var(--text-primary);border-color:var(--glass-border);}
+.nav-item.active{background:var(--glass-bg);border-color:var(--glass-border);color:var(--text-primary);}
+.nav-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.nav-label{display:flex;align-items:center;gap:10px;flex:1;}
+.nav-count{font-size:11px;font-weight:600;background:var(--bg-3);padding:2px 8px;border-radius:10px;color:var(--text-muted);}
+.nav-item.active .nav-count{color:var(--text-secondary);}
+.main{min-width:0;}
+.module-hero{background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:1.75rem 2rem;margin-bottom:1.5rem;position:relative;overflow:hidden;}
+.module-hero::before{content:'';position:absolute;top:-30px;right:-30px;width:150px;height:150px;border-radius:50%;background:var(--hero-glow,rgba(79,142,247,0.12));filter:blur(40px);}
+.module-hero-title{font-size:22px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:12px;}
+.module-hero-badge{font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,0.07);color:var(--text-secondary);border:1px solid var(--glass-border);}
+.module-hero-sub{font-size:13px;color:var(--text-secondary);}
+.toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:8px;}
+.section-filter{display:flex;gap:6px;flex-wrap:wrap;}
+.section-pill{font-size:11.5px;padding:4px 12px;border-radius:20px;background:var(--glass-bg);border:1px solid var(--glass-border);cursor:pointer;transition:var(--transition);color:var(--text-muted);font-weight:500;}
+.section-pill:hover{color:var(--text-primary);border-color:rgba(255,255,255,0.15);}
+.section-pill.active{background:rgba(79,142,247,0.12);border-color:var(--accent-blue);color:var(--accent-blue);}
+.copy-all-btn{font-size:12px;font-weight:500;padding:7px 16px;border-radius:var(--radius);background:var(--glass-bg);border:1px solid var(--glass-border);color:var(--text-secondary);cursor:pointer;transition:var(--transition);display:flex;align-items:center;gap:6px;}
+.copy-all-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary);}
+.section-group{margin-bottom:1.5rem;}
+.section-head{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);padding:8px 14px;background:var(--bg-1);border-radius:var(--radius) var(--radius) 0 0;border:1px solid var(--glass-border);border-bottom:none;display:flex;align-items:center;gap:8px;}
+.section-head-line{flex:1;height:1px;background:var(--glass-border);}
+.q-list{border:1px solid var(--glass-border);border-radius:0 0 var(--radius) var(--radius);overflow:hidden;}
+.q-item{border-bottom:1px solid var(--glass-border);}
+.q-item:last-child{border-bottom:none;}
+.q-header{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;cursor:pointer;transition:background .15s;user-select:none;background:var(--bg-1);}
+.q-header:hover{background:var(--bg-2);}
+.q-num{color:var(--text-muted);font-size:11.5px;font-variant-numeric:tabular-nums;min-width:28px;padding-top:2px;font-weight:600;font-family:'JetBrains Mono',monospace;}
+.q-text{flex:1;font-size:13.5px;line-height:1.6;color:var(--text-primary);font-weight:500;}
+.q-chevron{font-size:14px;color:var(--text-muted);transition:transform .25s ease;margin-left:8px;padding-top:2px;flex-shrink:0;}
+.q-item.open .q-chevron{transform:rotate(180deg);}
+.q-item.open .q-header{background:var(--bg-2);}
+.q-answer{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1);background:var(--bg-0);}
+.q-item.open .q-answer{max-height:3000px;}
+.answer-inner{padding:16px 16px 18px 54px;border-top:1px solid var(--glass-border);font-size:13px;line-height:1.85;color:var(--text-secondary);}
+.answer-inner h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--accent-blue);margin-bottom:6px;margin-top:14px;}
+.answer-inner h4:first-child{margin-top:0;}
+.answer-inner ul,.answer-inner ol{padding-left:20px;margin:6px 0;}
+.answer-inner li{margin-bottom:5px;}
+.answer-inner code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--bg-3);padding:1px 6px;border-radius:4px;color:var(--accent-teal);}
+.answer-inner pre{background:var(--bg-3);border:1px solid var(--glass-border);border-radius:var(--radius);padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#e2e8f0;overflow-x:auto;margin:10px 0;line-height:1.6;white-space:pre-wrap;}
+.tag{display:inline-block;font-size:11px;font-weight:600;padding:1px 8px;border-radius:4px;margin:2px;background:rgba(79,142,247,0.12);color:var(--accent-blue);}
+.tag.green{background:rgba(52,211,153,0.12);color:var(--accent-green);}
+.tag.amber{background:rgba(251,191,36,0.12);color:var(--accent-amber);}
+.tag.coral{background:rgba(251,146,60,0.12);color:var(--accent-coral);}
+.tag.purple{background:rgba(167,139,250,0.12);color:var(--accent-purple);}
+.copy-q-btn{font-size:11px;padding:3px 10px;border-radius:6px;background:transparent;border:1px solid var(--glass-border);color:var(--text-muted);cursor:pointer;transition:var(--transition);flex-shrink:0;white-space:nowrap;}
+.copy-q-btn:hover{background:var(--bg-3);color:var(--text-primary);}
+.no-res{text-align:center;padding:3rem;color:var(--text-muted);font-size:14px;}
+mark{background:rgba(251,191,36,0.25);color:var(--accent-amber);border-radius:2px;padding:0 2px;}
+*::-webkit-scrollbar{width:5px;height:5px;}
+*::-webkit-scrollbar-track{background:transparent;}
+*::-webkit-scrollbar-thumb{background:var(--bg-3);border-radius:3px;}
+.c-purple{background:var(--accent-purple);}.c-teal{background:var(--accent-teal);}.c-coral{background:var(--accent-coral);}.c-amber{background:var(--accent-amber);}.c-blue{background:var(--accent-blue);}.c-green{background:var(--accent-green);}.c-pink{background:var(--accent-pink);}.c-gray{background:var(--accent-gray);}
+.menu-btn{display:none;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius);padding:6px 12px;color:var(--text-secondary);font-size:13px;cursor:pointer;align-items:center;gap:6px;}
+@media(max-width:860px){.menu-btn{display:flex;}.header-stats{display:none;}}
+.site-footer{text-align:center;padding:2rem;font-size:12px;color:var(--text-muted);border-top:1px solid var(--glass-border);margin-top:2rem;position:relative;z-index:1;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">J</div>
+      <span class="logo-text">Nav<span>Teja</span> Interview</span>
+    </a>
+    <div class="header-stats">
+      <span class="stat-pill">9 Modules</span>
+      <span class="stat-pill">400+ Questions</span>
+      <span class="stat-pill">Detailed Answers</span>
+    </div>
+    <button class="menu-btn" onclick="toggleSidebar()">☰ Modules</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="search-wrap">
+      <input class="search-input" id="searchInput" type="text" placeholder="🔍 Search questions…" oninput="filterQ()"/>
+    </div>
+    <nav class="module-nav" id="moduleNav"></nav>
+  </aside>
+  <main class="main" id="mainContent">
+    <div class="module-hero" id="moduleHero"></div>
+    <div class="toolbar">
+      <div class="section-filter" id="sectionFilter"></div>
+      <button class="copy-all-btn" onclick="copyAll()">📋 Copy All</button>
+    </div>
+    <div id="qContainer"></div>
+  </main>
+</div>
+<footer class="site-footer">NavTeja · Java Fullstack Interview Bank · 9 modules · 400+ questions with detailed answers</footer>
+<script>
+// ═══════════════════════════════════════════════════════
+//  DATA — questions + answers placeholder
+// ═══════════════════════════════════════════════════════
+const modules = MODULES_DATA_PLACEHOLDER;
+
+// ═══════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════
+let activeTab = 0;
+let searchMode = false;
+let activeSub = null;
+
+const colorVars = {
+  'c-purple':'var(--accent-purple)',
+  'c-teal':'var(--accent-teal)',
+  'c-coral':'var(--accent-coral)',
+  'c-amber':'var(--accent-amber)',
+  'c-blue':'var(--accent-blue)',
+  'c-green':'var(--accent-green)',
+  'c-pink':'var(--accent-pink)',
+  'c-gray':'var(--accent-gray)'
+};
+
+function renderNav(){
+  const nav = document.getElementById('moduleNav');
+  nav.innerHTML = modules.map(m=>`
+    <button class="nav-item${m.id===activeTab&&!searchMode?' active':''}" onclick="setTab(${m.id})">
+      <span class="nav-label">
+        <span class="nav-dot ${m.color}"></span>
+        ${m.name}
+      </span>
+      <span class="nav-count">${m.count}</span>
+    </button>`).join('');
+}
+
+function setTab(id){
+  activeTab = id;
+  searchMode = false;
+  activeSub = null;
+  document.getElementById('searchInput').value='';
+  closeSidebar();
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function hl(text, q){
+  if(!q) return text;
+  const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+  return text.replace(re,'<mark>$1</mark>');
+}
+
+function answerHtml(a){
+  if(!a) return '<em style="color:var(--text-muted)">Answer coming soon…</em>';
+  return a;
+}
+
+function render(search=''){
+  renderNav();
+  const mod = modules[activeTab];
+  const hero = document.getElementById('moduleHero');
+  const container = document.getElementById('qContainer');
+  const filter = document.getElementById('sectionFilter');
+  const color = colorVars[mod.color] || 'var(--accent-blue)';
+
+  if(searchMode){
+    hero.style.setProperty('--hero-glow',`rgba(251,191,36,0.15)`);
+    hero.innerHTML=`
+      <div class="module-hero-title">🔍 Search Results</div>
+      <p class="module-hero-sub">Showing results across all modules</p>`;
+    filter.innerHTML='';
+    let all=[];
+    modules.forEach(m=>m.subs.forEach(s=>s.qs.forEach(q=>all.push({q:q.q,a:q.a,mod:m.name,color:m.color}))));
+    const filtered=all.filter(x=>x.q.toLowerCase().includes(search.toLowerCase()));
+    if(!filtered.length){
+      container.innerHTML=`<div class="no-res">😶 No questions found for "<strong>${search}</strong>"</div>`;
+      return;
+    }
+    container.innerHTML=`<div class="q-list" style="border-radius:var(--radius);border:1px solid var(--glass-border);">
+      ${filtered.map((x,i)=>buildItem(x.q,x.a,i+1,search,x.mod)).join('')}
+    </div>`;
+    return;
+  }
+
+  hero.style.cssText=`--hero-glow:${color.replace('var(','rgba(').replace(')',',0.15)')};`;
+  hero.innerHTML=`
+    <div class="module-hero-title">
+      <span class="nav-dot ${mod.color}" style="width:12px;height:12px;"></span>
+      ${mod.name}
+      <span class="module-hero-badge">${mod.count} Questions</span>
+    </div>
+    <p class="module-hero-sub">${mod.subs.length} sections · Click any question to expand its answer · Click Copy to copy text</p>`;
+
+  filter.innerHTML = mod.subs.map((s,i)=>`
+    <button class="section-pill${activeSub===i?' active':''}" onclick="jumpSec(${i})">${s.head}</button>`).join('');
+
+  let n=1;
+  let html='';
+  mod.subs.forEach((sub,si)=>{
+    html+=`<div class="section-group" id="sec-${si}">
+      <div class="section-head">
+        ${sub.head}
+        <span class="section-head-line"></span>
+        <span style="font-size:10px;color:var(--text-muted)">${sub.qs.length} Q</span>
+      </div>
+      <div class="q-list">
+        ${sub.qs.map(q=>buildItem(q.q,q.a,n++,'','')).join('')}
+      </div>
+    </div>`;
+  });
+  container.innerHTML=html;
+}
+
+function buildItem(question, answer, num, search, modName){
+  const qText = search ? hl(question,search) : question;
+  const modTag = modName ? `<span style="font-size:11px;color:var(--text-muted);margin-left:6px">[${modName}]</span>` : '';
+  return `<div class="q-item">
+    <div class="q-header" onclick="toggleItem(this)">
+      <span class="q-num">${String(num).padStart(2,'0')}</span>
+      <span class="q-text">${qText}${modTag}</span>
+      <button class="copy-q-btn" onclick="event.stopPropagation();copyText(\`${question.replace(/`/g,"\\`").replace(/\$/g,"\\$")}\`,this)">Copy</button>
+      <span class="q-chevron">▾</span>
+    </div>
+    <div class="q-answer">
+      <div class="answer-inner">${answerHtml(answer)}</div>
+    </div>
+  </div>`;
+}
+
+function toggleItem(header){
+  const item = header.parentElement;
+  const wasOpen = item.classList.contains('open');
+  const siblings = item.parentElement.querySelectorAll('.q-item.open');
+  siblings.forEach(s=>{ if(s!==item) s.classList.remove('open'); });
+  item.classList.toggle('open',!wasOpen);
+}
+
+function jumpSec(i){
+  activeSub=i;
+  const el=document.getElementById('sec-'+i);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.section-pill').forEach((p,idx)=>p.classList.toggle('active',idx===i));
+}
+
+function filterQ(){
+  const val=document.getElementById('searchInput').value.trim();
+  if(!val){searchMode=false;render();return;}
+  searchMode=true;
+  render(val);
+}
+
+function copyText(text,btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    const orig=btn.textContent;
+    btn.textContent='✓ Copied';
+    btn.style.color='var(--accent-green)';
+    setTimeout(()=>{btn.textContent=orig;btn.style.color='';},1500);
+  });
+}
+
+function copyAll(){
+  const mod=modules[activeTab];
+  let all=[];let n=1;
+  mod.subs.forEach(sub=>{
+    all.push(`\n=== ${sub.head} ===`);
+    sub.qs.forEach(q=>all.push(`${n++}. ${q.q}`));
+  });
+  navigator.clipboard.writeText(`${mod.name} Interview Questions\n${all.join('\n')}`).then(()=>{
+    const btn=document.querySelector('.copy-all-btn');
+    btn.textContent='✓ Copied!';
+    setTimeout(()=>{btn.textContent='📋 Copy All';},1800);
+  });
+}
+
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+}
+
+render();
+</script>
+</body>
+</html>
