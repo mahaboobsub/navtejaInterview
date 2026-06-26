@@ -42,15 +42,9 @@ def compile_html():
     
     # Generate the script content
     js_data = json.dumps(db, ensure_ascii=False)
-    # We will write the javascript modules variable, but also add the actual rendering code
-    script_content = f"const modules = {js_data};\n"
     
-    # Add the remaining JS logic from index_template.html
-    # In index_template.html, we have MODULES_DATA_SCRIPT.
-    # We replace it with the script_content + the rest of the script.
-    # Note: the template contains the rest of the JS code after the placeholder.
-    # So we just replace MODULES_DATA_SCRIPT with the actual JS data.
-    compiled_html = html.replace("MODULES_DATA_SCRIPT", script_content)
+    # We replace the placeholder with the serialized JSON data
+    compiled_html = html.replace("MODULES_DATA_PLACEHOLDER", js_data)
     
     with open('index.html', 'w', encoding='utf-8') as f:
         f.write(compiled_html)
